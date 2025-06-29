@@ -279,7 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     console.error("Error fetching user data:", error.message);
                 });
         } else {
-            window.location.href = "/login";
+            //window.location.href = "/login";
         }
     });
     // TIME OUT
