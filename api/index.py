@@ -1,5 +1,4 @@
 from flask import *
-from flask_cors import CORS
 from requests import get
 from os import remove
 import openai
@@ -15,7 +14,6 @@ import tempfile
 
 
 app = Flask(__name__, static_folder="../static")
-CORS(app)
 
 # Replacement dictionary
 replacements = {
@@ -231,24 +229,24 @@ def process_input():
     return jsonify({'response': processed_response})
 
 
-# @app.route('/')
-# def home():
-#     return render_template('index.html')
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 
-# @app.route('/login')
-# def login():
-#     return render_template('login_page.html')
+@app.route('/login')
+def login():
+    return render_template('login_page.html')
 
 
-# @app.route('/chat_page')
-# def chat_page():
-#     return render_template('chat_page.html')
+@app.route('/chat_page')
+def chat_page():
+    return render_template('chat_page.html')
 
 
-# @app.route('/menu_page')
-# def menu_page():
-#     return render_template('menu_page.html')
+@app.route('/menu_page')
+def menu_page():
+    return render_template('menu_page.html')
 
 
 if __name__ == '__main__':
