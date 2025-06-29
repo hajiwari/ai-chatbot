@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>ARTIFICI</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1701247262/assets/gshvi2cwbfzllpl9wudv.ico">
+        <!-- Internal Stylesheets  -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+        <!-- Fontawesome Link for Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+        <!-- Moment and Pickaday for Calendar -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.0/pikaday.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.0/css/pikaday.min.css">
+        <!-- Firebase scripts -->
+        <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-database-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
+        <!-- SMTPjs script -->
+	    
+        <!-- SMTPjs password: 4DB14B34297FC6C2C8101AC99BBC58602F87 -->
+        <!-- SMTPjs security token: 3f6037f8-a2b7-4ada-8b1b-5e12fafa09b7 -->
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAcwzVY5ouT-4iHxurAlNYF9h3eQS8y21g",
+            authDomain: "artifici-e4277.firebaseapp.com",
+            databaseURL: "https://artifici-e4277-default-rtdb.firebaseio.com",
+            projectId: "artifici-e4277",
+            storageBucket: "artifici-e4277.appspot.com",
+            messagingSenderId: "224907051957",
+            appId: "1:224907051957:web:abfdfb60be2ef278fc8ffc",
+            measurementId: "G-BMDTLYMETZ"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const auth = firebase.auth();
+        </script>
+    </head>
+    <body>
+        <div class="signin-signup" id="logInSignUp">
+            <div class="landing-container">
+                <div class="nav-container" id="headerContainer">
+                    <div class="left-group">
+                        <b class="artifici" id="artificiTitle">Artifici</b>
+                    </div>
+                    <div class="right-group">
+                        <div class="right-subgroup research-button" id="researchButton">
+                            Research
+                        </div>
+                        <div class="right-subgroup safety-button" id="safetyButton">
+                            Safety
+                        </div>
+                        <div class="">I</div>
+                        <div type="button" class="header-log-in" id="buttonContainer">
+                            <div class="right-subgroup" id="buttonContainer">Log in</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="body-container">
+                    <div class="registration-container">
+                        <div class="registration-content">
+                            <div class="registration-secondary-content" id="registrationSecondaryContent">
+                                <b class="main-title">ARTIFICI</b>
+                                <div class="sub-title">
+                                    All-around Real-time Technology and Intelligence for
+                                Facilitating Integrated Communications and Interactions
+                                </div>
+                                <div class="quote">
+                                    Work with Artifici to generate ideas, inspire creativity, and
+                                boost productivity.
+                                </div>
+                                <div class="button-group" id="buttonGroup">
+                                    <div class="sign-up-button" id="signUpButton">
+                                        <div class="right-subgroup">Sign up</div>
+                                    </div>
+                                    <div class="log-in-button" id="logInButton">
+                                        <div class="right-subgroup">Log In</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sign-in-content" id="signInContent" style="display: none">
+                                <b class="hey-there">Hey There!</b>
+                                <div class="tab-area">
+                                    <div class="button-tab" id="signUpButton2">
+                                        <div class="signup">Signup</div>
+                                    </div>
+                                    <div class="button-tab1" id="buttonTabContainer1">
+                                        <div class="signup1">Login</div>
+                                    </div>
+                                </div>
+                                <b class="artifici-is-glad">Artifici is glad to have you!</b>
+                                <div class="textbox log-in-field">
+                                    <input
+                                        type="text"
+                                        class="user-details"
+                                        placeholder="Email / Username"
+                                        id="userEmailInput"
+                                        required
+                                    >
+                                </div>
+                                <div class="textbox log-in-field">
+                                    <input
+                                        type="password"
+                                        id="passwordInputLogin"
+                                        class="user-details user-password-input"
+                                        placeholder="Password"
+                                        required
+                                    >
+                                    <img
+                                        src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700864062/assets/cb2ye57stjwvvrnfxi6z.svg"
+                                        alt=""
+                                        class="toggle-password"
+                                        onclick="togglePassword(event)"
+                                    >
+                                </div>
+                                <div class="button-group">
+                                    <div type="button" class="log-in-button-final" id="logInButtonFinal">
+                                        <div class="main-button">
+                                            Log In
+                                        </div>
+                                    </div>
+                                    <div type="button" id="forgotPasswordBtn" class="forgot-password">
+                                        Forgot Password
+                                    </div>
+                                </div>
+                                <div class="loader-container" id="loginSuccess" style="display: none;">
+                                    <div class="lds-ring">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <div class="loader-text">
+                                        Log in successful! Artifici is logging you in
+                                    </div>
+                                </div>
+                                <div class="loader-container-error" id="loginFailAllField" style="display: none;">
+                                    <div class="loader-text">
+                                        The email, username or password you entered isn't connected to an account
+                                    </div>
+                                </div>
+                                <div class="loader-container-error" id="loginFailVerify" style="display: none;">
+                                    <div class="loader-text">
+                                        Kindly verify your email before proceeding
+                                    </div>
+                                </div>
+                                <div class="loader-container-error" id="loginEmptyField" style="display: none;">
+                                    <div class="loader-text">
+                                        Please enter your email and password
+                                    </div>
+                                </div>
+                                <div class="loader-container-error" id="loginToVerify" style="display: none;">
+                                    <div class="loader-text">
+                                        Kindly verify your email before proceeding
+                                    </div>
+                                </div>
+                            </div>
+                            <div name="forgot-password" id="forgotPasswordContent" style="display: none;">
+                                <div class="forgot-password-content">
+                                    <div type="button" class="forgot-password" id="backToLogIn">Back</div>
+                                    <p>
+                                        <p class="forgot-h3">Find your account</p>
+                                        Enter your email to receive a password reset link.
+                                    </p>
+                                    <div class="textbox forgot-password-field">
+                                        <input
+                                            type="email"
+                                            class="user-details"
+                                            placeholder="Email address"
+                                            id="forgotEmail"
+                                            required
+                                        >
+                                    </div>
+                                    <div class="button-group">
+                                        <div type="button" class="send-forgot-button" id="sendForgotPassword">
+                                            <div class="main-button">
+                                                Send
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="loader-container-error" id="forgotpassNull" style="display: none; ">
+                                        <div class="loader-text">
+                                            Please fill out the field so Artifici can send you an email to reset your
+                                        password.
+                                        </div>
+                                    </div>
+                                    <div class="loader-container-error" id="forgotpassNoemail" style="display: none; ">
+                                        <div class="loader-text">
+                                            We couldn't find an account associated with the provided email address. Please
+                                        make sure you've entered the correct email or consider signing up if you don't
+                                        have an account yet.
+                                        </div>
+                                    </div>
+                                    <div class="loader-container" id="forgotpassSuccess" style="display: none;">
+                                        <div class="lds-ring">
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                        </div>
+                                        <div class="loader-text">
+                                            Password reset email sent successfully! Artifici will wait for you to come back.
+                                        Redirecting to log in page...
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sign-up-content" id="signUpContent" style="display: none">
+                                <b class="hey-there">Hey There!</b>
+                                <div class="tab-area">
+                                    <div class="button-tab" id="signUpButton21">
+                                        <div class="signup">Signup</div>
+                                    </div>
+                                    <div class="button-tab1" id="buttonTabContainer11">
+                                        <div class="signup1">Login</div>
+                                    </div>
+                                </div>
+                                <b class="artifici-is-waiting">Artifici is waiting!</b>
+                                <div class="textbox sign-up-field">
+                                    <input
+                                        type="text"
+                                        class="user-details"
+                                        placeholder="First Name"
+                                        id="fnInput"
+                                        maxlength="36"
+                                        required
+                                    >
+                                </div>
+                                <div class="textbox sign-up-field">
+                                    <input
+                                        type="text"
+                                        class="user-details middle-name"
+                                        placeholder="Middle Name (Optional)"
+                                        maxlength="36"
+                                        id="mnInput"
+                                    >
+                                </div>
+                                <div class="textbox sign-up-field">
+                                    <input
+                                        type="text"
+                                        class="user-details"
+                                        placeholder="Last Name"
+                                        id="lnInput"
+                                        maxlength="36"
+                                        required
+                                    >
+                                </div>
+                                <div class="textbox sign-up-field">
+                                    <input
+                                        type="text"
+                                        class="user-details"
+                                        placeholder="Username"
+                                        id="usernInput"
+                                        maxlength="36"
+                                        required
+                                    >
+                                </div>
+                                <div class="textbox sign-up-field">
+                                    <input
+                                        type="text"
+                                        class="user-details birthday"
+                                        placeholder="Birthday (MM/DD/YYYY)"
+                                        id="bdayInput"
+                                        oninput="validateBirthdayInput(this)"
+                                        required
+                                        readonly
+                                    >
+                                </div>
+                                <div class="textbox sign-up-field">
+                                    <input
+                                        type="email"
+                                        class="user-details"
+                                        placeholder="Email"
+                                        id="emailInput"
+                                        required
+                                    >
+                                </div>
+                                <div class="textbox sign-up-field pass-field">
+                                    <input
+                                        type="password"
+                                        id="passwordInput"
+                                        class="user-details user-password-input"
+                                        placeholder="Password"
+                                        minlength="8"
+                                        maxlength="36"
+                                        onfocus="showReq()"
+                                        onblur="hideReq()"
+                                        required
+                                    >
+                                    <img
+                                        src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700864062/assets/cb2ye57stjwvvrnfxi6z.svg"
+                                        alt=""
+                                        class="toggle-password"
+                                        onclick="togglePassword(event)"
+                                    >
+                                </div>
+                                <div>
+                                    <div class="password-requirements" id="passReq" style="display: none;">
+                                        <ul class="requirement-list">
+                                            <p style="margin-left: -7%;font-weight: bold;">Password must contains</p>
+                                            <li>
+                                                <i class="fa-solid fa-circle"></i>
+                                                <span>At least 8 characters length</span>
+                                            </li>
+                                            <li>
+                                                <i class="fa-solid fa-circle"></i>
+                                                <span>At least 1 number (0...9)</span>
+                                            </li>
+                                            <li>
+                                                <i class="fa-solid fa-circle"></i>
+                                                <span>At least 1 lowercase letter (a...z)</span>
+                                            </li>
+                                            <li>
+                                                <i class="fa-solid fa-circle"></i>
+                                                <span>At least 1 special symbol (!...$)</span>
+                                            </li>
+                                            <li>
+                                                <i class="fa-solid fa-circle"></i>
+                                                <span>At least 1 uppercase letter (A...Z)</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="textbox sign-up-field">
+                                    <input
+                                        type="password"
+                                        id="confirmPasswordInput"
+                                        class="user-details user-password-input"
+                                        placeholder="Confirm Password"
+                                        minlength="8"
+                                        maxlength="36"
+                                        required
+                                    >
+                                    <img
+                                        src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700864062/assets/cb2ye57stjwvvrnfxi6z.svg"
+                                        alt=""
+                                        class="toggle-password"
+                                        onclick="togglePassword(event)"
+                                    >
+                                </div>
+                                <div class="button-group">
+                                    <div type="button" class="sign-up-button-final" id="signUpButtonFinal">
+                                        <div class="main-button" id="signUpButtonFinal">Sign up</div>
+                                    </div>
+                                </div>
+                                <div class="loader-container-error" id="signupMinPass" style="display: none; ">
+                                    <div class="loader-text">
+                                        Password must be a minimum of 8 characters in length
+                                    </div>
+                                </div>
+                                <div class="loader-container-error" id="signupCharInclude" style="display: none; ">
+                                    <div class="loader-text">
+                                        Password must include at least one uppercase letter, one lowercase letter, one
+                                    special character, and one number.
+                                    </div>
+                                </div>
+                                <div class="loader-container-error" id="signupPassMismatch" style="display: none; ">
+                                    <div class="loader-text">
+                                        The entered passwords do not match.
+                                    </div>
+                                </div>
+                                <div class="loader-container-error" id="signupIncForm" style="display: none; ">
+                                    <div class="loader-text">
+                                        Please finish the sign up form.
+                                    </div>
+                                </div>
+                                <div class="loader-container-error" id="signupMinUsername" style="display: none; ">
+                                    <div class="loader-text">
+                                        Username must be more than 6 characters.
+                                    </div>
+                                </div>
+                                <div class="loader-container-error" id="signupTakenUsername" style="display: none; ">
+                                    <div class="loader-text">
+                                        The chosen username is already taken.
+                                    </div>
+                                </div>
+                                <div class="loader-container-error" id="signupBadEmailFormat" style="display: none; ">
+                                    <div class="loader-text">
+                                        You entered a badly formatted email.
+                                    </div>
+                                </div>
+                                <div class="loader-container-error" id="signupTakenEmail" style="display: none;">
+                                    <div class="loader-text">
+                                        This email address is already connected to an account. Try logging in instead.
+                                        <a href="#" id="clickHereLink" style="text-decoration: underline;">Click here</a>
+                                    </div>
+                                </div>
+                                <div class="loader-container" id="signupSuccess" style="display: none;">
+                                    <div class="lds-ring">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <div class="loader-text">
+                                        User created successfully!! Artifici is creating your account
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="email-verification" id="emailVerification" style="display: none">
+                                <b class="hey-there artifici-email">ARTIFICI</b>
+                                <div class="email-verify-title">Email verification</div>
+                                <div class="to-verify-your artifici-is-glad" id="toVerify">
+                                    To verify your account, Artifici will send a verification link to your email. If you don't see it in your inbox, please check your spam folder.
+                                    <br>
+                                    <br>
+                                    <div class="email-verify">
+                                        <b class="emailtestcom" id="submittedEmail">email</b>
+                                        <div class="button-group">
+                                            <div class="send-the-code" id="sendTheCode">
+                                                <div type="button" class="main-button" id="sendOTP">
+                                                    Send
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="diagram-container">
+                        <div class="image-container">
+                            <div class="image-wrapper">
+                                <div>
+                                    <img class="anim-image" src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316247/assets/lhi3ol7do3nvzesu6hhr.png">
+                                </div>
+                                <div>
+                                    <img class="anim-image" src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316242/assets/s9roua5z2snuyxmcce4z.png">
+                                </div>
+                                <div>
+                                    <img class="anim-image" src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316242/assets/cihhwymzdsqn6h1sbjyb.png">
+                                </div>
+                            </div>
+                            <div class="textbox-animation">
+                                <div class="typing-text" id="typingText"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="termsAndConditionPopUp" class="popup-overlay-dark" style="display: none">
+                        <div class="dashboard-component">
+                            <div class="main-content-tos">
+                                <div class="section-title-tos-main">ARTIFICI TERMS AND CONDITIONS</div>
+                                <div class="section-content-tos">
+                                    <strong>Last Updated:</strong>
+                                    DECEMBER 1, 2023
+                                </div>
+                                <div class="section-contact-tos">
+                                    <div class="section-title-tos">1. Acceptance of Terms</div>
+                                    <div class="section-content-tos">
+                                        By accessing or using ARTIFICI, you agree to comply
+                                    with and be bound by the following terms and conditions. If you do not agree to
+                                    these Terms, please refrain from using the AI System.
+                                    </div>
+                                </div>
+                                <div class="section-contact-tos">
+                                    <div class="section-title-tos">2. License and Use</div>
+                                    <div class="section-content-tos">
+                                        <strong>2.1. License Grant:</strong>
+                                        The AI System is
+                                    provided under license. ARTIFICI grants you a non-exclusive, non-transferable,
+                                    revocable license to use the AI System in accordance with these Terms.
+                                    </div>
+                                    <div class="section-content-tos">
+                                        <strong>2.2. Scope of Use:</strong>
+                                        You agree to use
+                                    the AI System solely for lawful purposes and in compliance with all applicable laws
+                                    and regulations.
+                                    </div>
+                                </div>
+                                <div class="section-contact-tos">
+                                    <div class="section-title-tos">3. Intellectual Property</div>
+                                    <div class="section-content-tos">
+                                        All intellectual property rights, including but not
+                                    limited to patents, copyrights, trademarks, and trade secrets, in and to the AI
+                                    System are owned by ARTIFICI.
+                                    </div>
+                                </div>
+                                <div class="section-contact-tos">
+                                    <div class="section-title-tos">4. Data Privacy and Security</div>
+                                    <div class="section-content-tos">
+                                        <strong>4.1. User Data:</strong>
+                                        By using the AI
+                                    System, you consent to the collection, processing, and storage of your data in
+                                    accordance with the ARTIFICI Privacy Policy.
+                                    </div>
+                                    <div class="section-content-tos">
+                                        <strong>4.2. Security:</strong>
+                                        ARTIFICI employs
+                                    reasonable measures to secure your data; however, it is your responsibility to
+                                    ensure the security of your access credentials.
+                                    </div>
+                                </div>
+                                <div class="section-contact-tos">
+                                    <div class="section-title-tos">5. Limitation of Liability</div>
+                                    <div class="section-content-tos">
+                                        To the maximum extent permitted by law, ARTIFICI shall
+                                    not be liable for any direct, indirect, incidental, special, consequential, or
+                                    punitive damages, or any loss of profits or revenues, whether incurred directly or
+                                    indirectly, arising out of your use of the AI System.
+                                    </div>
+                                </div>
+                                <div class="section-contact-tos">
+                                    <div class="section-title-tos">6. Updates and Maintenance</div>
+                                    <div class="section-content-tos">
+                                        ARTIFICI may, at its discretion, provide updates,
+                                    enhancements, or modifications to the AI System. Continued use of the AI System
+                                    after such updates constitutes acceptance of the modified Terms.
+                                    </div>
+                                </div>
+                                <div class="section-contact-tos">
+                                    <div class="section-title-tos">7. Governing Law</div>
+                                    <div class="section-content-tos">
+                                        These Terms are governed by and construed in accordance
+                                    with the laws of [Jurisdiction]. Any disputes arising from or in connection with
+                                    these Terms shall be subject to the exclusive jurisdiction of the courts in
+                                    [Jurisdiction].
+                                    </div>
+                                </div>
+                                <div class="section-contact-tos">
+                                    <div class="section-title-tos">8. Changes to Terms</div>
+                                    <div class="section-content-tos">
+                                        ARTIFICI reserves the right to modify these Terms at
+                                    any time. Changes will be effective upon posting on the ARTIFICI website. It is your
+                                    responsibility to regularly review these Terms.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="section-contact-tos">
+                                <div class="section-content-tos">
+                                    Contact Information: For questions or concerns regarding
+                                these Terms, please contact us at
+                                    <a href="mailto:artifici.ai.noreply@gmail.com">artifici.ai.noreply@gmail.com</a>
+                                    .
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="researchPopUp" class="popup-overlay-dark" style="display: none">
+                        <div class="dashboard-component">
+                            <b class="research-and-overview-title">Research and Overview</b>
+                            <span class="research-and-overview-content">
+                                Introduction:
+                            The field of Artificial Intelligence (AI) has evolved significantly since its inception in
+                            the mid-20th century, challenges persist, such as the lack of a cohesive infrastructure and
+                            the limited scope of many AI systems. In response, the proponents present "ARTIFICI:
+                            All-around Real-time Technology and Intelligence," a groundbreaking project aimed at
+                            overcoming existing limitations and providing users with a comprehensive AI companion.
+
+                            Challenges in Current AI Landscape:
+                            Despite the progress in AI, challenges remain. Many AI systems lack integration, leading to
+                            fragmented user experiences. For instance, popular systems are limited to specific domains.
+                            Additionally, even advanced models lack multimodal functionalities and interoperability,
+                            hindering their adaptability and limiting user experiences.
+
+                            Introducing ARTIFICI:
+                            ARTIFICI aims to redefine the AI landscape by offering a holistic solution. Unlike
+                            traditional systems, ARTIFICI stands out by providing a suite of capabilities that go beyond
+                            existing limitations. The project integrates Text-to-Speech (TTS), Speech-to-Text (SST),
+                            Machine Learning, Visual Recognition, and Natural Language Processing (NLP) to offer a
+                            versatile and adaptive AI system.
+
+                            Key Features of ARTIFICI:
+                            Comprehensive Capabilities: Unlike traditional AI systems, ARTIFICI offers a holistic suite
+                            of capabilities that transcends the limitations of existing models. Its multimodal prowess
+                            enables it to handle tasks involving speech synthesis, visual recognition, and real-time
+                            interactions.
+
+                            Advanced Machine Learning Algorithms: ARTIFICI leverages state-of-the-art machine learning
+                            algorithms to enhance its learning capabilities and adaptability. This ensures that the
+                            system evolves alongside users' ever-changing needs.
+
+                            Seamless Interoperability: One of ARTIFICI's distinguishing features is its seamless
+                            interoperability with other AI systems. This enables a cohesive user experience, eliminating
+                            the need for users to switch between different interfaces for varied tasks.
+
+                            Vision and Impact:
+                            The proponents envision that ARTIFICI will revolutionize the current AI landscape by
+                            providing users with an all-around AI companion. By offering a superior breadth of
+                            functionalities, ARTIFICI aims to empower users with a versatile and adaptive AI system that
+                            caters to a diverse range of needs. The project represents a step towards overcoming the
+                            challenges of fragmented user experiences, setting a new standard for integrated
+                            communications and interactions in the realm of artificial intelligence.
+                            </span>
+                        </div>
+                    </div>
+                    <div id="safetyPopUp" class="popup-overlay-dark" style="display: none">
+                        <div id="safetyComponents" class="dashboard-component">
+                            <div class="safety-title">
+                                <img class="artifici-ico-safety" src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316243/assets/ocd45glidgracohgnjei.png">
+                                <b>Safety</b>
+                            </div>
+                            <span class="safety-content">
+                                <blockquote>
+                                    <i class="safety-quoted">
+                                        <abbr title="All Around Real-time Technology and Intelligence for Facilitating Integrated 
+                                    Communications and Interactions">ARTIFICI</abbr>
+                                        prioritize the protection of
+                                    intellectual property and are committed to
+                                    addressing copyright infringement.
+                                    </i>
+                                </blockquote>
+                                <br>
+                                <span>
+                                    Cognifyx's commitment to fostering a safe and respectful environment extends to
+                                ensuring that all content generated, shared, or used within our platform adheres to
+                                copyright laws and regulations. This page outlines our approach to addressing copyright
+                                infringement and the steps we take to maintain the integrity of creative
+                                works.
+                                </span>
+                                <br>
+                                <br>
+                                <br>
+                                <b>Copyright Compliance</b>
+                                <ul>
+                                    ARTIFICI acknowledges the importance of respecting copyright laws and intellectual
+                                property rights. We adhere to the following principles to ensure compliance:
+                                    <br>
+                                    <br>
+                                    <li class="safety-tertiary">User Responsibility:</li>
+                                    <ul>
+                                        <br>
+                                        Users are responsible for the content they input into the system. It is essential
+                                    that users respect copyright laws and only use content for which they hold the
+                                    necessary rights or have obtained proper authorization.
+                                    </ul>
+                                    <br>
+                                    <li class="safety-tertiary">Education and Awareness:</li>
+                                    <ul>
+                                        <br>
+                                        We provide educational resources and guidelines to inform users about copyright laws
+                                    and best practices. This includes information on obtaining proper permissions,
+                                    licensing, and the appropriate use of copyrighted materials.
+                                    </ul>
+                                </ul>
+                                <br>
+                                <b>Reporting Copyright Infringement</b>
+                                <ul>
+                                    ARTIFICI takes copyright infringement seriously. If you believe that your copyrighted
+                                work has been used in a way that constitutes infringement, please follow our reporting
+                                process:
+                                    <br>
+                                    <br>
+                                    <li class="safety-tertiary">Notification:</li>
+                                    <ul>
+                                        <br>
+                                        Send us a detailed notification of the alleged infringement, including
+                                    identification of the copyrighted work, a description of the infringing material,
+                                    and contact information.
+                                    </ul>
+                                    <br>
+                                    <li class="safety-tertiary">Verification:</li>
+                                    <ul>
+                                        <br>
+                                        Upon receiving a valid notification, we will promptly investigate the alleged
+                                    infringement. This may involve contacting the user responsible for the content and
+                                    assessing the validity of the claim.
+                                    </ul>
+                                    <br>
+                                    <li class="safety-tertiary">Resolution:</li>
+                                    <ul>
+                                        <br>
+                                        If the infringement is verified, we will take appropriate actions, which may
+                                    include removing the infringing content, disabling the user's account, or
+                                    implementing other measures to address the issue.
+                                    </ul>
+                                </ul>
+                                <br>
+                                <b>Continuous Improvement</b>
+                                <ul>
+                                    We continuously strive to improve our systems and processes to prevent copyright
+                                infringement. This includes implementing technological measures, educating users, and
+                                staying informed about developments in copyright laws.
+                                </ul>
+                                <div class="safety-separator"></div>
+                                <br>
+                                <i class="safety-contact-title">Contact Us</i>
+                                <br>
+                                <span class="safety-contact">
+                                    If you have any concerns, questions, or wish to report copyright infringement, please
+                                contact our designated Copyright Compliance Team at
+                                    <u>artifici.ai.noreply@gmail.com</u>
+                                    Your cooperation helps us maintain a safe and respectful environment for all users.
+                                    <br>
+                                    Thank you for your understanding and collaboration in upholding copyright standards
+                                within the ARTIFICI community.
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-container" id="footerContainer">
+                    <div class="cognifyx-parent" id="subFooterContainer">
+                        <b class="cognifyx">Cognifyx</b>
+                        <div class="terms-and-conditions" id="termsAndConditionsButton">Terms and Conditions</div>
+                    </div>
+                    <img
+                        class="light-dark-toggle"
+                        id="lightDarkToggle"
+                        alt=""
+                        src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316242/assets/je0q6yyyxf1gduv47d3r.svg"
+                    >
+                </div>
+            </div>
+        </div>
+        <script src="{{ url_for('static', filename='js/login_page.js') }}"></script>
+    </body>
+    <script>
+
+
+const requirementList = document.querySelectorAll(".requirement-list li");
+const passwordInput = document.querySelector(".pass-field input");
+const requirements = [
+    { regex: /.{8,}/, index: 0 }, // Minimum of 8 characters
+    { regex: /[0-9]/, index: 1 }, // At least one number
+    { regex: /[a-z]/, index: 2 }, // At least one lowercase letter
+    { regex: /[^A-Za-z0-9]/, index: 3 }, // At least one special character
+    { regex: /[A-Z]/, index: 4 }, // At least one uppercase letter
+]
+
+function showReq() {
+	document.getElementById("passReq").style.display = "flex";
+  }
+
+  function hideReq() {
+	document.getElementById("passReq").style.display = "none";
+  }
+
+  passwordInput.addEventListener("keyup", (e) => {
+    requirements.forEach(item => {
+        // Check if the password matches the requirement regex
+        const isValid = item.regex.test(e.target.value);
+        const requirementItem = requirementList[item.index];
+
+        // Updating class and icon of requirement item if requirement matched or not
+        if (isValid) {
+            requirementItem.classList.add("valid");
+            requirementItem.firstElementChild.className = "fa-solid fa-check";
+        } else {
+            requirementItem.classList.remove("valid");
+            requirementItem.firstElementChild.className = "fa-solid fa-circle";
+        }
+    });
+});
+
+
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        // Select the button
+        const signUpButton = document.getElementById('signUpButton');
+        const buttonContainer = document.getElementById('buttonContainer');
+        const logInButton = document.getElementById('logInButton');
+        const buttonTabContainer1 = document.getElementById('buttonTabContainer1');
+        const signUpButton2 = document.getElementById('signUpButton2');
+        const backToLogIn = document.getElementById('backToLogIn');
+        // Add event listener
+        signUpButton.addEventListener('click', (event) => {
+            clearAll();
+        });
+        // Add event listener
+        buttonContainer.addEventListener('click', (event) => {
+            clearAll();
+        });
+        // Add event listener
+        logInButton.addEventListener('click', (event) => {
+            clearAll();
+        });
+        // Add event listener
+        buttonTabContainer1.addEventListener('click', (event) => {
+            clearAll();
+        });
+        // Add event listener
+        signUpButton2.addEventListener('click', (event) => {
+            clearAll();
+        });
+        // Add event listener
+        backToLogIn.addEventListener('click', clearAll);
+        artificiTitle.addEventListener("click", clearAll);
+
+    });
+
+
+
+
+
+
+    var loginFailContainer = document.querySelector(".loader-container-error");
+    let otpValue;
+    var loginFailAllField = document.getElementById("loginFailAllField");
+    var loginEmptyField = document.getElementById("loginEmptyField");
+    var loginFailVerify = document.getElementById("loginFailVerify");
+    var signupSuccess = document.getElementById("signupSuccess");
+    var signupMinPass = document.getElementById("signupMinPass");
+    var signupCharInclude = document.getElementById("signupCharInclude");
+    var signupPassMismatch = document.getElementById("signupPassMismatch");
+    var signupIncForm = document.getElementById("signupIncForm");
+    var signupMinUsername = document.getElementById("signupMinUsername");
+    var signupTakenUsername = document.getElementById("signupTakenUsername");
+    var signupTakenEmail = document.getElementById("signupTakenEmail");
+    var signupBadEmailFormat = document.getElementById("signupBadEmailFormat");
+
+    var forgotpassSuccess = document.getElementById("forgotpassSuccess");
+    var forgotpassNull = document.getElementById("forgotpassNull");
+    var forgotpassNoemail = document.getElementById("forgotpassNoemail");
+
+    var otpIncorrectInput = document.getElementById("otpIncorrectInput");
+    var otpNull = document.getElementById("otpNull");
+    var otpSuccess = document.getElementById("otpSuccess");
+
+    // FORGOT PASSWORD
+    document.addEventListener("DOMContentLoaded", function () {
+        firebase.auth().signOut();
+        const sendForgotPassword = document.getElementById("sendForgotPassword");
+        const signInContent = document.getElementById("signInContent");
+        const forgotPasswordContent = document.getElementById("forgotPasswordContent");
+        sendForgotPassword.addEventListener("click", function () {
+            clearLogin();
+
+            const forgotEmail = document.getElementById("forgotEmail").value;
+            document.getElementById("forgotEmail").disabled = true;
+            firebase
+                .database()
+                .ref("users")
+                .orderByChild("Email")
+                .equalTo(forgotEmail)
+                .once("value")
+                .then(function (userSnapshot) {
+                    if (userSnapshot.exists()) {
+                        hideAllWarnings();
+                        forgotpassSuccess.style.display = "flex";
+                        setTimeout(function () {
+                            signInContent.style.display = "flex";
+                            clearForgot();
+                            forgotPasswordContent.style.display = "none";
+                        }, 5000);
+                        return firebase.auth().sendPasswordResetEmail(forgotEmail);
+
+                    } else if (forgotEmail === '') {
+                        hideAllWarnings();
+                        document.getElementById("forgotEmail").disabled = false;
+                        forgotpassNull.style.display = "flex";
+                        return;
+                    }
+                    else {
+                        hideAllWarnings();
+                        document.getElementById("forgotEmail").disabled = false;
+                        forgotpassNoemail.style.display = "flex";
+                        return;
+                    }
+                })
+        });
+    });
+    // FORGOT PASSWORD END
+
+    document.getElementById("mnInput").addEventListener("input", function () {
+        this.value = this.value.replace(/[^a-zA-Z ]/g, '');
+        this.value = this.value.replace(/\s{2,}/g, ' ');
+        if (this.value.length > 20) {
+            this.value = this.value.substring(0, 20);
+        }
+    });
+
+    document.getElementById("fnInput").addEventListener("input", function () {
+        this.value = this.value.replace(/[^a-zA-Z ]/g, '');
+        this.value = this.value.replace(/\s{2,}/g, ' ');
+        if (this.value.length > 20) {
+            this.value = this.value.substring(0, 20);
+        }
+    });
+
+
+
+    document.getElementById("lnInput").addEventListener("input", function () {
+        this.value = this.value.replace(/[^a-zA-Z ]/g, '');
+        this.value = this.value.replace(/\s{2,}/g, ' ');
+        if (this.value.length > 20) {
+            this.value = this.value.substring(0, 20);
+        }
+    });
+    document.getElementById("usernInput").addEventListener("input", function () {
+        // Remove characters that are not letters or numbers
+        this.value = this.value.replace(/[^a-zA-Z0-9]/g, '');
+
+        // Limit the length to 20 characters
+        if (this.value.length > 20) {
+            this.value = this.value.substring(0, 20);
+        }
+    });
+
+    // Initialize Pikaday for the birthday input
+    const bdayInput = document.getElementById("bdayInput");
+    let isPikadayActive = false;
+
+    const pikaday = new Pikaday({
+        field: bdayInput,
+        format: "MM/DD/YYYY",
+        yearRange: [1923, 2005],
+        defaultDate: new Date(2000, 0, 1), // Change this line
+        onSelect: function () {
+            validateBirthdayInput(bdayInput);
+            bdayInput.disabled = false;
+            pikaday.hide();
+            isPikadayActive = false;
+        },
+    });
+
+
+    bdayInput.addEventListener("input", function () {
+        if (!isPikadayActive) {
+            validateBirthdayInput(bdayInput);
+        }
+    });
+
+    bdayInput.addEventListener("focus", function () {
+        isPikadayActive = true;
+    });
+
+    bdayInput.addEventListener("keydown", function (e) {
+        if (isPikadayActive) {
+            e.preventDefault();
+        }
+    });
+
+    function validateBirthdayInput(input) {
+        let sanitizedValue = input.value.replace(/[^0-9/]/g, "");
+
+        sanitizedValue = sanitizedValue.substring(0, 10);
+
+        let parts = sanitizedValue.split("/");
+
+        parts[0] = parts[0] ? parts[0].substring(0, 2) : "";
+        parts[1] = parts[1] ? parts[1].substring(0, 2) : "";
+        parts[2] = parts[2] ? parts[2].substring(0, 4) : "";
+
+        sanitizedValue = parts.join("/");
+
+        input.value = sanitizedValue;
+    }
+
+    let verifiedEmail;
+    // SIGN UP FUNCTION
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        function passwordMeetsRequirements(password) {
+            const requirementsRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\.])[A-Za-z\d!@#$%^&*()_+.]{8,}$/;
+            return requirementsRegex.test(password);
+        }
+
+            // Assuming your input fields have the class "user-details"
+            const inputFields = document.getElementsByClassName("user-details");
+        const signUpButtonFinal = document.getElementById("signUpButtonFinal");
+
+// Event listener for the Enter key on the input fields
+            for (var i = 0; i < inputFields.length; i++) {
+            inputFields[i].addEventListener("keypress", function (event) {
+                if (event.key === "Enter") {
+                signUpButtonFinal.click(); // Trigger the click event for signUpButtonFinal
+                }
+            });
+            }
+
+        signUpButtonFinal.addEventListener("click", async (e) => {
+            signUpButtonFinal.disabled = true;
+            e.preventDefault();
+            try {
+                clearLogin();
+                
+                const fNameInput = document.getElementById("fnInput").value;
+                const mNameInput = document.getElementById("mnInput").value;
+                const lNameInput = document.getElementById("lnInput").value;
+                const usernameInput = document.getElementById("usernInput").value;
+                const birthdayInput = document.getElementById("bdayInput").value;
+                const emailInput = document.getElementById("emailInput").value;
+                const passwordInput = document.getElementById("passwordInput").value;
+                const conPasswordInput = document.getElementById("confirmPasswordInput").value;
+
+                document.getElementById("signUpButtonFinal").disabled = true;
+                document.getElementById("fnInput").disabled = true;
+                document.getElementById("mnInput").disabled = true;
+                document.getElementById("lnInput").disabled = true;
+                document.getElementById("usernInput").disabled = true;
+                document.getElementById("bdayInput").disabled = true;
+                document.getElementById("emailInput").disabled = true;
+                document.getElementById("passwordInput").disabled = true;
+                document.getElementById("confirmPasswordInput").disabled = true;
+
+
+
+                verifiedEmail = "false";
+
+                function passwordMeetsRequirements(password) {
+                    const requirementsRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\.])[A-Za-z\d!@#$%^&*()_+.]{8,}$/;
+                    return requirementsRegex.test(password);
+                }
+
+                if (!fNameInput || !lNameInput || !usernameInput || !birthdayInput || !emailInput || !passwordInput || !conPasswordInput) {
+                    hideAllWarnings();
+                    document.getElementById("signupIncForm").style.display = "flex";
+                    document.getElementById("fnInput").disabled = false;
+                    document.getElementById("mnInput").disabled = false;
+                    document.getElementById("lnInput").disabled = false;
+                    document.getElementById("usernInput").disabled = false;
+                    document.getElementById("bdayInput").disabled = false;
+                    document.getElementById("emailInput").disabled = false;
+                    document.getElementById("passwordInput").disabled = false;
+                    document.getElementById("confirmPasswordInput").disabled = false;
+                    return;
+                }
+                if (usernameInput.length <= 6) {
+                    hideAllWarnings();
+                    document.getElementById("signupMinUsername").style.display = "flex";
+                    document.getElementById("fnInput").disabled = false;
+                    document.getElementById("mnInput").disabled = false;
+                    document.getElementById("lnInput").disabled = false;
+                    document.getElementById("usernInput").disabled = false;
+                    document.getElementById("bdayInput").disabled = false;
+                    document.getElementById("emailInput").disabled = false;
+                    document.getElementById("passwordInput").disabled = false;
+                    document.getElementById("confirmPasswordInput").disabled = false;
+                    return;
+                }
+                const userUsername = await firebase.database().ref("users").orderByChild("Username").equalTo(usernameInput).once("value");
+                if (userUsername.exists()) {
+                    hideAllWarnings();
+                    document.getElementById("signupTakenUsername").style.display = "flex";
+                    document.getElementById("fnInput").disabled = false;
+                    document.getElementById("mnInput").disabled = false;
+                    document.getElementById("lnInput").disabled = false;
+                    document.getElementById("usernInput").disabled = false;
+                    document.getElementById("bdayInput").disabled = false;
+                    document.getElementById("emailInput").disabled = false;
+                    document.getElementById("passwordInput").disabled = false;
+                    document.getElementById("confirmPasswordInput").disabled = false;
+                    return;
+                }
+                if (!emailInput.includes('@')) {
+                    hideAllWarnings();
+                    document.getElementById("signupBadEmailFormat").style.display = "flex";
+                    document.getElementById("fnInput").disabled = false;
+                    document.getElementById("mnInput").disabled = false;
+                    document.getElementById("lnInput").disabled = false;
+                    document.getElementById("usernInput").disabled = false;
+                    document.getElementById("bdayInput").disabled = false;
+                    document.getElementById("emailInput").disabled = false;
+                    document.getElementById("passwordInput").disabled = false;
+                    document.getElementById("confirmPasswordInput").disabled = false;
+                    return;
+                }
+                const userEmail = await firebase.database().ref("users").orderByChild("Email").equalTo(emailInput).once("value");
+                if (userEmail.exists()) {
+                    hideAllWarnings();
+                    document.getElementById("signupTakenEmail").style.display = "flex";
+                    document.getElementById("fnInput").disabled = false;
+                    document.getElementById("mnInput").disabled = false;
+                    document.getElementById("lnInput").disabled = false;
+                    document.getElementById("usernInput").disabled = false;
+                    document.getElementById("bdayInput").disabled = false;
+                    document.getElementById("emailInput").disabled = false;
+                    document.getElementById("passwordInput").disabled = false;
+                    document.getElementById("confirmPasswordInput").disabled = false;
+                    return;
+                }
+                if (passwordInput.length < 8) {
+                    hideAllWarnings();
+                    document.getElementById("signupMinPass").style.display = "flex";
+                    document.getElementById("fnInput").disabled = false;
+                    document.getElementById("mnInput").disabled = false;
+                    document.getElementById("lnInput").disabled = false;
+                    document.getElementById("usernInput").disabled = false;
+                    document.getElementById("bdayInput").disabled = false;
+                    document.getElementById("emailInput").disabled = false;
+                    document.getElementById("passwordInput").disabled = false;
+                    document.getElementById("confirmPasswordInput").disabled = false;
+                    return;
+                }
+                if (conPasswordInput !== passwordInput) {
+                    hideAllWarnings();
+                    document.getElementById("signupPassMismatch").style.display = "flex";
+                    document.getElementById("fnInput").disabled = false;
+                    document.getElementById("mnInput").disabled = false;
+                    document.getElementById("lnInput").disabled = false;
+                    document.getElementById("usernInput").disabled = false;
+                    document.getElementById("bdayInput").disabled = false;
+                    document.getElementById("emailInput").disabled = false;
+                    document.getElementById("passwordInput").disabled = false;
+                    document.getElementById("confirmPasswordInput").disabled = false;
+                    return;
+                }
+                if (!passwordMeetsRequirements(passwordInput)) {
+                    hideAllWarnings();
+                    document.getElementById("signupCharInclude").style.display = "flex";
+                    document.getElementById("fnInput").disabled = false;
+                    document.getElementById("mnInput").disabled = false;
+                    document.getElementById("lnInput").disabled = false;
+                    document.getElementById("usernInput").disabled = false;
+                    document.getElementById("bdayInput").disabled = false;
+                    document.getElementById("emailInput").disabled = false;
+                    document.getElementById("passwordInput").disabled = false;
+                    document.getElementById("confirmPasswordInput").disabled = false;
+                    return;
+                }
+
+
+
+                const userCredential = await firebase.auth().createUserWithEmailAndPassword(emailInput, passwordInput);
+                const user = userCredential.user;
+                await firebase.database().ref("users/" + user.uid).set({
+                    First_Name: fNameInput,
+                    Middle_Name: mNameInput,
+                    Last_Name: lNameInput,
+                    Username: usernameInput,
+                    Birthday: birthdayInput,
+                    Email: emailInput,
+                    Password: passwordInput,
+                    Verified_Email: verifiedEmail
+                });
+                hideAllWarnings();
+                signupSuccess.style.display = "flex";
+                setTimeout(function () {
+                    document.getElementById("signUpContent").style.display = "none";
+                    document.getElementById("signInContent").style.display = "none";
+                    document.getElementById("emailVerification").style.display = "block";
+                    document.getElementById("submittedEmail").textContent = emailInput;
+                }, 3000);
+            } catch (error) {
+                alert("Error creating user: " + error.message);
+            } finally {
+                signUpButtonFinal.disabled = false;
+
+            }
+        });
+
+        //Verify Email
+        const sendOTP = document.getElementById("sendOTP");
+        const submitOTP = document.getElementById("submitOTP");
+        const signUpContent = document.getElementById("signUpContent");
+        const signInContent = document.getElementById("signInContent");
+        const emailVerification = document.getElementById("emailVerification");
+                const emaiVerificationDigit = document.getElementById("emaiVerificationDigit");
+        const buttonContainer = document.getElementById("buttonContainer");
+        const logInButton = document.getElementById("logInButton");
+        const buttonTabContainer = document.getElementById("buttonTabContainer");
+        const buttonTabContainer1 = document.querySelector(".button-tab1");
+        const logInButtonFinal = document.getElementById("logInButtonFinal");
+
+
+
+sendOTP.addEventListener("click", async (e) => {
+            const emailInput = document.getElementById("emailInput").value;
+                const passwordInput = document.getElementById("passwordInput").value;
+
+            firebase.auth().signInWithEmailAndPassword(emailInput, passwordInput)
+                .then((userCredential) => {
+                    userCredential.user.sendEmailVerification();
+                    clearAll();
+                    showSignInContent();
+                    var snackbar = document.createElement('div');
+                                snackbar.className = "snackbar-container";
+                                snackbar.textContent = "Verification email sent! Check your inbox.";
+                                document.body.appendChild(snackbar);
+                                snackbar.className += " show";
+                                setTimeout(function () {
+                                    snackbar.className = snackbar.className.replace(" show", "");
+                                    document.body.removeChild(snackbar);
+                                }, 3000);
+                })
+                .catch((error) => {
+                    console.error("Error logging in:", error.message);
+                });
+
+        });
+        function showSignInContent() {
+            hideAllContent();
+            signInContent.style.display = "flex";
+        }
+
+        function hideAllContent() {
+            emailVerification.style.display = "none";
+            signUpContent.style.display = "none";
+            
+            
+        }
+
+    });
+
+    async function signInWithUsernameAndPassword(username, password) {
+        try {
+            const userSnapshot = await firebase
+                .database()
+                .ref("users")
+                .orderByChild("Username")
+                .equalTo(username)
+                .once("value");
+
+            if (userSnapshot.exists()) {
+                const userData = Object.values(userSnapshot.val())[0];
+
+                const userCredential = await auth.signInWithEmailAndPassword(
+                    userData.Email,
+                    password
+                );
+
+                return userCredential;
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
+    async function loginUser() {
+        clearSignUp();
+                clearForgot();
+        const logInButtonFinal = document.getElementById("logInButtonFinal");
+        const emailOrUsername = document.getElementById("userEmailInput").value;
+        const password = document.getElementById("passwordInputLogin").value;
+        document.getElementById("userEmailInput").disabled = true;
+        document.getElementById("passwordInputLogin").disabled = true;
+
+        if (emailOrUsername === "" || password === "") {
+            loginEmptyField.style.display = "flex";
+            loginFailAllField.style.display = "none";
+            document.getElementById("userEmailInput").disabled = false;
+            document.getElementById("passwordInputLogin").disabled = false;
+        }
+
+        let signInPromise;
+        if (emailOrUsername.includes('@')) {
+            signInPromise = auth.signInWithEmailAndPassword(emailOrUsername, password);
+        } else {
+            signInPromise = signInWithUsernameAndPassword(emailOrUsername, password);
+        }
+        var loginSuccess = document.getElementById("loginSuccess");
+
+        signInPromise
+            .then((userCredential) => {
+                firebase.auth().onAuthStateChanged((user) => {
+                        if (user) {
+                            // User is signed in
+                            if (user.emailVerified) {
+hideAllWarnings();
+                                loginEmptyField.style.display = "none";
+                                loginFailAllField.style.display = "none";
+                                loginSuccess.style.display = "flex";
+                                setTimeout(function () {
+
+                                    window.location.href = "/chat_page";
+                                    clearAll();
+
+                                }, 3000);
+                            } else {
+hideAllWarnings();
+                                loginFailVerify.style.display = "flex";
+document.getElementById("userEmailInput").disabled = false;
+                                    document.getElementById("passwordInputLogin").disabled = false;
+                        }
+                                } else {
+                                    // User is signed out
+                        }
+                    });
+            }) // 17
+            .catch((error) => {
+                if (emailOrUsername !== "" && password !== "") {
+                    loginFailAllField.style.display = "flex";
+                    loginEmptyField.style.display = "none";
+                    loginFailVerify.style.display = "none";
+                    document.getElementById("userEmailInput").disabled = false;
+                    document.getElementById("passwordInputLogin").disabled = false;
+                }
+            });
+    }
+
+    const emailOrUsernameEnter = document.getElementById("userEmailInput");
+    const passwordEnter = document.getElementById("passwordInputLogin");
+    // Event listener for the Enter key on the username input
+    emailOrUsernameEnter.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        loginUser();
+    }
+    });
+
+    // Event listener for the Enter key on the password input
+    passwordEnter.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        loginUser();
+    }
+    });
+
+    logInButtonFinal.addEventListener("click", loginUser);
+
+    function hideAllWarnings() {
+        const elementsToHide = [
+            "loginFailVerify",
+            "signupMinPass",
+            "signupCharInclude",
+            "signupPassMismatch",
+            "signupIncForm",
+            "signupMinUsername",
+            "signupTakenUsername",
+            "signupTakenEmail",
+            "signupBadEmailFormat",
+            "forgotpassNull",
+            "forgotpassNoemail",
+            "forgotpassSuccess",
+            "otpIncorrectInput",
+            "otpNull",
+            "loginFailAllField",
+            "loginEmptyField",
+            "otpSuccess"
+
+
+        ];
+
+        elementsToHide.forEach(elementId => {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.style.display = "none";
+            }
+        });
+    }
+    function hideAllSuccess() {
+        const elementsToHide = [
+            "loginSuccess",
+            "otpSuccess",
+            "forgotpassSuccess",
+            "signupSuccess"
+        ];
+
+        elementsToHide.forEach(elementId => {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.style.display = "none";
+            }
+        });
+    }
+
+    function clearAll() {
+        clearForgot();
+        clearSignUp();
+        clearLogin();
+                hideAllWarnings();
+        hideAllSuccess();
+    };
+
+    function clearLogin() {
+        document.getElementById("userEmailInput").disabled = false;
+        document.getElementById("passwordInputLogin").disabled = false;
+        document.getElementById("userEmailInput").value = "";
+        document.getElementById("passwordInputLogin").value = "";
+    };
+    function clearSignUp() {
+        document.getElementById("fnInput").disabled = false;
+        document.getElementById("mnInput").disabled = false;
+        document.getElementById("lnInput").disabled = false;
+        document.getElementById("usernInput").disabled = false;
+        document.getElementById("bdayInput").disabled = false;
+        document.getElementById("emailInput").disabled = false;
+        document.getElementById("passwordInput").disabled = false;
+        document.getElementById("confirmPasswordInput").disabled = false;
+        document.getElementById("fnInput").value = "";
+        document.getElementById("mnInput").value = "";
+        document.getElementById("lnInput").value = "";
+        document.getElementById("usernInput").value = "";
+        document.getElementById("bdayInput").value = "";
+        document.getElementById("emailInput").value = "";
+        document.getElementById("passwordInput").value = "";
+        document.getElementById("confirmPasswordInput").value = "";
+    };
+        function offOTP() {
+        document.getElementById('otp1').disabled = true;
+        document.getElementById('otp2').disabled = true;
+        document.getElementById('otp3').disabled = true;
+        document.getElementById('otp4').disabled = true;
+        document.getElementById('otp5').disabled = true;
+        document.getElementById('otp6').disabled = true;
+    };
+    function clearForgot() {
+        document.getElementById('forgotEmail').value = "";
+    };
+    </script>
+</body>
+</html>

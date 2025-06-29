@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>ARTIFICI | Menu</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<link rel="icon" type="image/x-icon"
+		href="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1701247262/assets/gshvi2cwbfzllpl9wudv.ico">
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.2/pikaday.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.0/css/pikaday.min.css">
+
+
+	<!-- CSS IMPORTS -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+	<!-- MDB -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.0.0/mdb.min.css" rel="stylesheet" />
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+		integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+	<!-- GOOGLE TRANSLATE -->
+	<script type="text/javascript"
+		src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+	<script type="text/javascript">
+		function googleTranslateElementInit() {
+			var body = document.body;
+			new google.translate.TranslateElement({
+				pageLanguage: 'EN',
+			}, 'google_translate_element');
+		}
+	</script>
+
+	<script src="https://code.responsivevoice.org/responsivevoice.js?key=yZJs5o0n"></script>
+	<!-- Firebase scripts -->
+	<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-database-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<script>
+		const firebaseConfig = {
+			apiKey: "AIzaSyAcwzVY5ouT-4iHxurAlNYF9h3eQS8y21g",
+			authDomain: "artifici-e4277.firebaseapp.com",
+			databaseURL: "https://artifici-e4277-default-rtdb.firebaseio.com",
+			projectId: "artifici-e4277",
+			storageBucket: "artifici-e4277.appspot.com",
+			messagingSenderId: "224907051957",
+			appId: "1:224907051957:web:abfdfb60be2ef278fc8ffc",
+			measurementId: "G-BMDTLYMETZ"
+		};
+		if (!firebase.apps.length) {
+			firebase.initializeApp(firebaseConfig);
+		}
+		const database = firebase.database();
+		const auth = firebase.auth();
+	</script>
+</head>
+
+<body>
+	<div class="main-chat" id="menuPage">
+		<div class="landing-container">
+			<header class="nav-container" id="headerContainer">
+				<div class="left-group">
+					<b class="artifici">Artifici</b>
+				</div>
+			</header>
+			<div class="body-container">
+				<div class="profile-main-container" id="profileMainContainer" style="display: none">
+					<div class="profile-back-navigation" id="backBtnProfile">
+						<img class="back-icon" alt=""
+							src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316248/assets/vqu8h0kek0ekfasrwo1i.svg">
+					</div>
+					<div class="profile-details-container">
+						<div class="profile-image-container">
+							<img class="user-image-icon" id="profileArea"
+								src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700843227/assets/agjh6za9dbl6ybfnvjj8.svg"
+								alt="Profile Image">
+							<div class="profile-camera-overlay">
+								<img class="profile-camera-icon"
+									src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700460816/assets/l2ddtwueyuupnhzp46p6.svg">
+							</div>
+						</div>
+						<div class="profile-info">
+							<div class="profile-name" id="profileFullName">Test User</div>
+							<div class="profile-username" id="profileUserName"></div>
+							<div class="profile-age-bday">
+								<div class="profile-info-column">
+									<span class="profile-info-label">Age:</span>
+									<span class="profile-info-value" id="profileAge"></span>
+								</div>
+								<div class="profile-info-column">
+									<span class="profile-info-label">Birthday:</span>
+									<span class="profile-info-value" id="profileBirthday"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="profile-profile">
+						<div class="profile-title">Profile Overview</div>
+						<div class="profile-card" title="Profile">
+							<div class="profile-form">
+
+								<div class="profile-form-control">
+									<label class="profile-label" for="email">Email Address</label>
+									<div class="profile-input-container">
+										<input id="profileContEmail" type="text" class="profile-input"
+											placeholder="&nbsp;" disabled>
+									</div>
+								</div>
+
+								<div class="profile-form-control">
+									<label class="profile-label" for="userId">User ID</label>
+									<div class="profile-input-container">
+										<input id="profileContUserId" type="text" class="profile-input"
+											placeholder="&nbsp;" disabled>
+									</div>
+								</div>
+
+								<div class="profile-form-control">
+									<label class="profile-label" for="isVerified">Account Status</label>
+									<div class="profile-input-container">
+										<input id="profileContVerified" type="text" class="profile-input"
+											class="profile-input" disabled>
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+						<div class="profile-account-management">
+							<div class="profile-title">Account management</div>
+							<div class="profile-delete-account" id="profileDeleteAccount">
+								<button tabindex="0" type="button" class="profile-delete">Delete account</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="settings-container" id="settingsContainer" style="display: none;">
+					<div class="setting-panel-container">
+						<div class="setting-panel">
+							<div class="back-navigation" id="backNavigation">
+								<img class="back-icon" alt=""
+									src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316248/assets/vqu8h0kek0ekfasrwo1i.svg">
+								<b class="back">Back</b>
+							</div>
+							<div class="vertical-tabs-container">
+								<div class="general-setting">
+									<div class="setting-title">
+										<div class="general-tab-container">
+											<img class="vector-icon"
+												src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316248/assets/cpudgtagepmguzxo5ium.svg" />
+											<b class="vertical-tab" data-tab="general-settings">General Settings</b>
+										</div>
+									</div>
+									<div class="setting-sub-details">
+										<div class="general-settings">General Details</div>
+									</div>
+								</div>
+								<div class="personal-setting">
+									<div class="setting-title">
+										<div class="personal-tab-container">
+											<img class="vector-icon"
+												src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316248/assets/mss4dv19qqolfwmrph1t.svg" />
+											<b class="vertical-tab" data-tab="personal-settings">Personal Settings</b>
+										</div>
+									</div>
+									<div class="setting-sub-details">
+										<div class="general-settings">Account Security</div>
+										<div class="general-settings">Account Deletion</div>
+										<div class="general-settings">Data Controls</div>
+									</div>
+								</div>
+								<div class="preference-setting">
+									<div class="setting-title">
+										<div class="preference-tab-container">
+											<img class="vector-icon"
+												src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316249/assets/whvogrw8wlcjao4twfei.svg" />
+											<b class="vertical-tab" data-tab="preferences">Preferences</b>
+										</div>
+									</div>
+									<div class="setting-sub-details">
+										<div class="general-settings">Language</div>
+										<div class="general-settings">Theme</div>
+										<div class="general-settings">Notification</div>
+										<div class="general-settings">Artifici Voice Settings</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="setting-details" id="general-settings-tab" style="display: none;">
+						<h3 class="setting-title">General Settings</h3>
+						<div class="general-content">
+							<h3>General Details<span id="editButton">edit</span></h3>
+
+							<form class="general-details-form" id="general-details-form">
+								<div class="settings-textbox">
+									<label for="fullname">Full Name</label>
+									<input type="text" id="genDeetsFullname" placeholder=""  maxlength="50" disabled>
+								</div>
+								<div class="settings-textbox">
+									<label for="username">Username</label>
+									<input type="text" id="genDeetsUsername" placeholder="" maxlength="36" disabled>
+								</div>
+								<div class="settings-textbox">
+									<label for="email">Email Address</label>
+									<input type="email" id="genDeetsEmail" placeholder="" disabled>
+								</div>
+								<div class="settings-textbox">
+									<label for="birthdate">Birthdate</label>
+									<input type="text" id="genDeetsBirthdate" placeholder="" oninput="validateBirthdayInput(this)" required readonly disabled>
+								</div>
+
+								<div class="settings-checkbox-container">
+									<input type="checkbox" id="news" name="news" value="enabled">
+									<label for="news">Subscribe to Newsletter</label>
+								</div>
+							</form>
+						</div>
+						<div class="button-save-reset">
+							<button class="save-button1" id="saveSettings" style="display: none;">save</button>
+							<button class="reset-button" id="resetSettings1">reset</button>
+						</div>
+					</div>
+					<!-- TAB FOR PERSONAL SETTINGS -->
+					<div class="setting-details" id="personal-settings-tab" style="display: none;">
+						<h3 class="setting-title">Personal Settings</h3>
+						<div class="personal-content" id="accountSettingsTab">
+							<h3>Account Security</h3>
+							<form class="account-settings-form" id="account-settings-form">
+								<div class="settings-textbox">
+									<label for="old-password">Old Password</label>
+									<input type="password" id="oldPassword" name="oldPassword">
+								</div>
+
+								<div class="settings-textbox">
+									<label for="new-password">New Password</label>
+									<input type="password" id="newPassword" name="newPassword">
+								</div>
+
+								<div class="settings-textbox">
+									<label for="confirm-password">Confirm Password</label>
+									<input type="password" id="confirmPassword" name="confirmPassword">
+								</div>
+
+								<!--  -->
+								<div class="loader-container-error" id="newPasswordReq" style="display: none;">
+									<div class="loader-text">
+										New password must include at least one uppercase letter, one lowercase letter,
+										one
+										special character, and one number.
+									</div>
+								</div>
+								<div class="loader-container-error" id="samePassword" style="display: none;">
+									<div class="loader-text">
+										Oops! It seems you entered the same password. Please provide a new password for
+										the change to take effect.
+									</div>
+								</div>
+								<div class="loader-container-error" id="misNewPassword" style="display: none;">
+									<div class="loader-text">
+										Uh-oh! It looks like the new password and confirm password entries don't match.
+										Please make sure they are identical before proceeding.
+									</div>
+								</div>
+								<div class="loader-container-error" id="misCurrentPassword" style="display: none;">
+									<div class="loader-text">
+										Incorrect old password. Please double-check and re-enter your current password.
+									</div>
+								</div>
+								<div class="loader-container-error" id="noInput" style="display: none;">
+									<div class="loader-text">
+										Please complete the form before proceeding.
+									</div>
+								</div>
+
+								<button class="change-password-button" id="changePasswordButton">Change
+									Password</button>
+							</form>
+						</div>
+
+						<div class="personal-content">
+							<h3>Account Deactivation</h3>
+							<form class="account-deletion-form" id="account-deletion-form">
+								<button class="settings-delete" type="submit">Deactivate Account</button>
+								<div class="settings-textbox" style="display: none;">
+									<label for="confirm-delete">Confirm Deletion:</label>
+									<input type="password" id="confirm-delete" name="confirm-delete"
+										placeholder="Enter password to delete">
+								</div>
+							</form>
+						</div>
+
+						<div class="personal-content">
+							<h3 class="data-controls">Data Controls</h3>
+							<div>
+								<button class="export-data-button" id="export-data-button">Export Data</button>
+							</div>
+						</div>
+						<div class="button-save-reset">
+							<button class="save-button2" id="saveSettings" style="display: none;">save</button>
+							<button class="reset-button" id="resetSettings2">reset</button>
+						</div>
+					</div>
+					<!-- TAB FOR PREFERENCES -->
+					<div class="setting-details" id="preferences-tab" style="display: block;">
+						<h3 class="setting-title">Preferences and Customization</h3>
+						<div class="preference-content">
+							<h3>Language Settings</h3>
+							<div id="google_translate_element"></div>
+						</div>
+						<div class="preference-content">
+							<h3>Theme/Interface Customization</h3>
+							<select class="settings-dropdown" id="thme" name="thme">
+								<option disabled selected id="thme-value">Default</option>
+								<option value="Light">Light</option>
+								<option value="Dark">Dark</option>
+							</select>
+						</div>
+						<div class="preference-content">
+							<h3>Notification and Sound Settings</h3>
+							<div class="settings-checkbox-container" style="margin-left: 40px;">
+								<input type="checkbox" id="notif" name="notif" value="enabled">
+								<label for="notif">Notification Sound</label>
+							</div>
+						</div>
+						<div class="preference-content">
+							<h3>Artifici Voice Settings</h3>
+							<div class="voice-settings-container">
+								<div class="voice-setting">
+									<label for="lang">Select a Voice:</label>
+									<select class="settings-dropdown" id="lang" name="lang"
+										style="width: 239px; margin: 0px !important;">
+										<option disabled selected id="lang-value">Default</option>
+									</select>
+
+									<img class="voice-play-button" id="voicePlayButton"
+										src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1701080664/assets/trye4hnn5ah65lj5kehj.svg"
+										alt="Play">
+									<img class="voice-stop-button" id="voiceStopButton"
+										src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1701080664/assets/ntk3iebcz2cp1qkp5lz9.svg"
+										alt="Stop">
+								</div>
+								<div class="voice-setting">
+									<label for="rate">Rate:</label>
+									<input type="range" id="rate" name="rate" min="0.1" max="2" step="0.1" value="1.0"
+										style="margin-left: 80px;">
+									<span id="rate-value">1.0</span>
+								</div>
+								<div class="voice-setting">
+									<label for="pitch">Pitch:</label>
+									<input type="range" id="pitch" name="pitch" min="0.1" max="2" step="0.1" value="1.0"
+										style="margin-left: 75px;">
+									<span id="pitch-value">1.0</span>
+								</div>
+								<div class="voice-setting">
+									<label for="volume">Volume:</label>
+									<input type="range" id="volume" name="volume" min="0" max="100" value="50"
+										style="margin-left: 47px;">
+									<span id="volume-value">50</span>
+								</div>
+							</div>
+						</div>
+						<div class="button-save-reset">
+							<button class="save-button3" id="saveSettings" style="display: none;">save</button>
+							<button class="reset-button" id="resetSettings3">reset</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="updates-container" id="updatesContainer" style="display: none">
+					<p id="backBtnUpdates" class="back-button-updates">← Back</p>
+					<div class="artifici-update-logs-title">Artifici Update Logs</div>
+					<div class="update-details-container">
+						<b class="yyyymmdd">2023/12/01</b>
+						<b class="update-log-title">Final System Deployment</b>
+						<div class="update-log-details-container">
+							<ul class="update-log-details-group">
+								<li>Improved algorithm for natural language processing.</li>
+								<li>Enhanced user interface for better user experience.</li>
+								<li>Fixed bugs related to data processing.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="about-container" id="aboutContainer" style="display: none;">
+					<div class="help-title">
+						<p id="backBtnAbout" class="bckBtn">← Back</p>
+						<div class="about-title">About</div>
+						<br>
+						<div class="about-body">
+							Welcome to the world of ARTIFICI - where cutting-edge technology meets<br>innovative
+							intelligence. ARTIFICI is not just an artificial intelligence system; it is an <br>
+							embodiment of creativity, adaptability, and the relentless pursuit of enhancing user
+							<br>experiences.Learn more about the vision, mission, and the driving force behind
+							ARTIFICI.
+						</div>
+						<br><br>
+						<div class="mnv-container">
+							<br>
+							<div>
+								<div class="about-title">Vision</div><br>
+								<div class="about-body-mnv">
+									At ARTIFICI, we envision a future where artificial intelligence seamlessly
+									integrates intoevery aspect of daily life, enhancing human interactions,
+									understanding, and productivity. Our vision is to empower users with a comprehensive
+									AI companion that not only meets their needs but anticipates and adapts to their
+									ever-changing requirements.
+								</div>
+							</div>
+							<br>
+							<br>
+							<br>
+							<div>
+								<div class="about-title">Mission</div><br>
+								<div class="about-body-mnv">
+									Our mission is to redefine the AI landscape by developing state-of-the-art
+									technologies that provide users with an unparalleled experience. We strive to break
+									the barriers of conventional AI limitations, offering a multifaceted system that
+									combines advanced functionalities, personalization, and a commitment to user safety
+									and satisfaction.
+								</div>
+							</div>
+						</div>
+						<br>
+						<hr class="separator">
+						<br>
+						<div name="core-features">
+							<h3 class="core-title">Core Features</h3>
+							<p class="core-body">
+								Comprehensive Capabilities: Unlike traditional AI systems, ARTIFICI stands out by
+								offering a holistic suite of capabilities. From chat interactions to voice commands,
+								image generation, and beyond, ARTIFICI is designed to be your all-in-one AI companion.
+							</p>
+							<div class="sub-core">
+								<br>
+								<p class="sub-core-title">● Adaptability Through Learning:</p>
+								<p class="sub-core-body">
+									ARTIFICI is not static; it learns and evolves alongside users. Deep learning
+									algorithms allow the system to understand user preferences,ensuring a personalized
+									and adaptive user experience.
+								<p class="sub-core-title">● Safety and Respectful Interaction:</p>
+								<p class="sub-core-body">
+									Implementing AI regulations, particularly for content moderation, is a priority.
+									ARTIFICI is committed to providing a safe and respectful environment for users to
+									interact, free from inappropriate or harmful content.
+								<p class="sub-core-title">● Multimodal Integration:</p>
+								<p class="sub-core-body">
+									As technology progresses, ARTIFICI is at the forefront of integrating voice, image,
+									and other multimodal capabilities. This ensures that the platform remains at the
+									cutting edge of AI innovation.
+								</p>
+								<br>
+							</div>
+						</div>
+						<br>
+						<br>
+						<hr class="separator">
+						<br>
+						<div name="meat-the-team">
+							<h3 class="core-title"> Meet the Team</h3>
+							<p class="core-body">
+								Behind ARTIFICI is a team of passionate individuals dedicated to shaping the future of
+								artificial intelligence. Our team named Cognifyx, consisting of Jaime Dela Cruz III
+								(Project Manager), Aerl Martin Jimenez (Programmer), Adrian Sarucam (System Analyst)
+								and Marie Dannica Apostol (Quality Assurance), collaborates to bring you a product that
+								combines technical excellence with user-centric design.
+							</p>
+						</div>
+						<br>
+						<div name="meet-the-team-pictures" class="img-team-container">
+							<div class="img-team-item">
+								<img src="https://i.ibb.co/6N4K4Tm/DSC-0902-copy.jpg" class="img-team">
+								<p class="img-team-text">Marie Dannica G. Apostol</p>
+							</div>
+							<div class="img-team-item">
+								<img src="https://cdn.discordapp.com/attachments/983392861884149802/1180791069592535090/1701592732091-removebg-preview.png"
+									class="img-team">
+								<p class="img-team-text">Jaime G. Dela Cruz III</p>
+							</div>
+							<div class="img-team-item">
+								<img src="https://i.ibb.co/Sd758By/received-3119438805006084.jpg" class="img-team">
+								<p class="img-team-text">Aerl Martin B. Jimenez</p>
+							</div>
+							<div class="img-team-item">
+								<img src="https://i.ibb.co/HTxnZcc/IMG-20231201-085211.jpg" class="img-team">
+								<p class="img-team-text">Adrian V. Sarucam</p>
+							</div>
+						</div><br>
+					</div>
+				</div>
+
+				<div class="uploaded-files-container" id="uploadedFilesContainer" style="display: none;">
+					<div class="uploaded-files-title">Uploaded Files</div>
+				</div>
+
+				<div class="help-container" id="helpContainer" style="display: none;">
+					<div class="help-title">
+						<p id="backBtnHelp" class="bckBtn">← Back</p>
+						<h1>Welcome to ARTIFICI!</h1>
+					</div>
+					<p>
+						This page is your guide to navigating and maximizing the features of ARTIFICI. If you have
+						specific questions or encounter issues not covered here, reach out to our support team for
+						assistance.
+					</p>
+					<div class="accordion-container">
+						<h3 class="accordion-h3">Getting Started</h3>
+						<br>
+						<button class="accordion">How do I unlock the full potential of ARTIFICI?</button>
+						<div class="panel">
+							<p>
+								To unlock the full potential, create an account during the sign-up process. Provide
+								your First Name, Last Name, Username, E-mail, and Password. Our system ensures the
+								security of your information through encryption and translation processes.
+							</p>
+						</div>
+						<button class="accordion">What should I do if I encounter issues logging in?</button>
+						<div class="panel">
+							<p>
+								If you have an account, log in using your registered Username and Password. If issues
+								persist, ensure correct credentials. Use "Forgot Password" or contact our support team
+								for assistance.
+							</p>
+						</div>
+						<br>
+						<br>
+						<hr class="separator">
+						<h3 class="accordion-h3">Main Features</h3>
+						<br>
+						<button class="accordion">Tell me about ARTIFICI's Chatbot.</button>
+						<div class="panel">
+							<p>
+								ARTIFICI offers a personalized conversational experience, retaining context throughout.
+								It remembers and builds upon previous interactions for an engaging experience.
+							</p>
+						</div>
+						<button class="accordion">What Voice Commands does ARTIFICI support?</button>
+						<div class="panel">
+							<p>
+								Enjoy voice translation into 40 languages, adjustable voice settings, and accent. The
+								system leverages Speech Training Datasets for accurate voice recognition and synthesis.
+							</p>
+						</div>
+						<button class="accordion">How does Image Generation work?</button>
+						<div class="panel">
+							<p>
+								This cutting-edge feature allows the system to create images for various purposes.
+								Users input queries or parameters, guiding the AI in creating tailored images.
+							</p>
+						</div>
+						<button class="accordion">Can ARTIFICI extract information from files?</button>
+						<div class="panel">
+							<p>
+								Yes, ARTIFICI can extract information from various file types, enhancing utility in
+								document analysis and data retrieval.
+							</p>
+						</div>
+						<button class="accordion">How can I personalize settings on ARTIFICI?</button>
+						<div class="panel">
+							<p>
+								Personalize avatars, choose color schemes with Theme settings, and update profile
+								information, including your name.
+							</p>
+						</div>
+						<br>
+						<br>
+						<hr class="separator">
+						<h3 class="accordion-h3">Troubleshooting</h3>
+						<br>
+						<button class="accordion">What if I have technical issues not covered here?</button>
+						<div class="panel">
+							<p>
+								For technical issues or personalized assistance, contact our support team at
+								support@artifici.ai. We are here to ensure a seamless and enjoyable experience.
+							</p>
+						</div>
+						<br>
+						<hr class="separator">
+						<h3>Thank You for Choosing ARTIFICI!</h3>
+						<p>
+							We hope this help page enhances your understanding of the platform. Explore, interact,
+							and let ARTIFICI become your trusted AI companion.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer-container" id="footerContainer">
+		<div class="cognifyx-parent" id="subFooterContainer">
+			<b class="cognifyx">Cognifyx</b>
+		</div>
+		<img class="light-dark-toggle" id="lightDarkToggle" alt=""
+			src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316242/assets/je0q6yyyxf1gduv47d3r.svg" />
+	</div>
+	<script src="{{ url_for('static', filename='js/menu_page.js') }}"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.0.0/mdb.umd.min.js"></script>
+	<script src="https://code.responsivevoice.org/responsivevoice.js?key=yZJs5o0n"></script>
+<script>
+const birthdayInput = document.getElementById('genDeetsBirthdate');
+let isFirstSelection = true;
+
+const picker = new Pikaday({
+    field: birthdayInput,
+    format: 'DD/MM/YYYY',
+    yearRange: [1900, 2005],
+	defaultDate: new Date(2000, 0, 1), // Change this line
+    onSelect: function () {
+        if (isFirstSelection) {
+            isFirstSelection = false;
+            birthdayInput.blur();
+        }
+    }
+});
+
+birthdayInput.addEventListener('focus', function (e) {
+    if (!isFirstSelection) {
+        e.preventDefault();
+        picker.hide();
+    }
+});
+
+function validateBirthdayInput() {
+    birthdayInput.value = birthdayInput.value.replace(/[^0-9/]/g, '').replace(/\/(\d{2})(\/|$)/, '/$1').replace(/^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/([0-9]{4})/, '$1/$2/$3');
+}
+
+birthdayInput.addEventListener('input', validateBirthdayInput);
+birthdayInput.addEventListener('keydown', function (e) {
+    if (e.keyCode === 8) {
+        e.preventDefault();
+    }
+});
+	</script>
+</body>
+
+</html>

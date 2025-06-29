@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ARTIFICI | Chat</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="icon" type="image/x-icon"
+        href="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1701247262/assets/gshvi2cwbfzllpl9wudv.ico">
+
+    <!-- GOOGLE TRANSLATE -->
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            var body = document.body;
+            new google.translate.TranslateElement({
+                pageLanguage: 'EN',
+            }, 'google_translate_element');
+        }
+    </script>
+
+    <!-- TTS -->
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=yZJs5o0n"></script>
+
+    <!-- Include jQuery first -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- FIREBASE -->
+    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAcwzVY5ouT-4iHxurAlNYF9h3eQS8y21g",
+            authDomain: "artifici-e4277.firebaseapp.com",
+            databaseURL: "https://artifici-e4277-default-rtdb.firebaseio.com",
+            projectId: "artifici-e4277",
+            storageBucket: "artifici-e4277.appspot.com",
+            messagingSenderId: "224907051957",
+            appId: "1:224907051957:web:abfdfb60be2ef278fc8ffc",
+            measurementId: "G-BMDTLYMETZ"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const auth = firebase.auth();
+    </script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+</head>
+
+<body>
+    <div class="main-chat" id="mainChat">
+        <div class="landing-container">
+            <header class="nav-container" id="headerContainer">
+                <div class="left-group">
+                    <!--img class="icon-menu" alt=""
+                        src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316243/assets/pyrilsyqysbfjkjlrvlb.svg"
+                        id="iconMenu" /-->
+                    <b class="artifici">Artifici</b>
+                </div>
+                <div class="right-group">
+                    <b class="divider">I</b>
+                    <div class="button" id="buttonContainer" onclick="dashboardPopUp()">
+                        <img class="aawbg-1-icon" id="profileChatPage"
+                            src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700843227/assets/agjh6za9dbl6ybfnvjj8.svg" />
+                    </div>
+                </div>
+            </header>
+            <div class="body-container" id="bodyContainer">
+                <div class="menu-container" id="menuContainer" style="display: none">
+                    <div class="top-menu">
+                        <div class="new-chat" id="newChat">
+                            <div>+ New Chat</div>
+                        </div>
+                        <div class="recent-chats" id="recentChats">Recents</div>
+                        <div class="chat-history-container">
+                            <div class="recent-chat-area" id="recentChatArea"></div>
+                        </div>
+                    </div>
+                    <div class="location">
+                        <div id="location-text"></div>
+                        <div id="location-info"><span id="ip-address"></span>&nbsp; | &nbsp;<a href="#"
+                                id="update-location">Update location</a></div>
+                    </div>
+                </div>
+                <div class="main-chat-container">
+                    <div class="chat-container" id="chatContainer">
+                        <div class="chat-container-new-chat" id="chatContainerNewChat" style="display: show">
+                            <img class="artifici-icon" alt=""
+                                src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316243/assets/iwmruuoefel8srax732a.png" />
+                            <b class="welcome-title">Greetings,&nbsp;<span id="chatUsername"
+                                    class="dash-username">user</span> !</b>
+                            <div class="secondary-title">Tell me what's on your mind or pick a suggestion.</div>
+                            <div class="suggestion-group">
+                                <div class="suggestions">
+                                    <div class="suggestions-title">Understand</div>
+                                    <div class="suggestions-content">
+                                        <span>What's behind a trend</span>
+                                    </div>
+                                    <div class="suggestions-content">
+                                        <span>Debug a Python code</span>
+                                    </div>
+                                    <div class="suggestions-content">
+                                        <span>Find something...</span>
+                                    </div>
+                                </div>
+                                <div class="suggestions">
+                                    <div class="suggestions-title">Create</div>
+                                    <div class="suggestions-content">
+                                        <span>Beginner's guide to...</span>
+                                    </div>
+                                    <div class="suggestions-content">
+                                        <span>Mocktail recipe</span>
+                                    </div>
+                                    <div class="suggestions-content">
+                                        <span>Write Java code</span>
+                                    </div>
+                                </div>
+                                <div class="suggestions">
+                                    <div class="suggestions-title">Explore</div>
+                                    <div class="suggestions-content">
+                                        <span>Youtube creator tips</span>
+                                    </div>
+                                    <div class="suggestions-content">
+                                        <span>Best beaches in...</span>
+                                    </div>
+                                    <div class="suggestions-content">
+                                        <span>See the sights</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-ai-global-container" id="userAIGlobalContainer" style="display: none;">
+                            <div id="loading" class="loading" style="display:none;">Loading&#8230;</div>
+                        </div>
+                    </div>
+                    <div class="message-field-container">
+                        <div id="response"></div>
+                        <div class="textbox-area">
+                            <div id="uploadArea" class="upload-area">
+                                <div class="upload-file-trigger">
+                                    <img class="icon-file" id="iconFile" alt="Upload File"
+                                        src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316241/assets/gr2v7zesytsvhlfxasac.svg" />
+                                    <span class="hover-text">Upload File</span>
+                                </div>
+                                <div class="popup-overlay-dark" id="docuFilePopup" style="display: none">
+                                    <div class="dashboard-component" id="docuFilePopupContents">
+                                        <button id="closeButton" class="close-button-upload">X</button>
+                                        <img class="icon-upload document"
+                                            src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316250/assets/xpomabdp5p3dklpy6jsf.svg" />
+                                        <br><b>Upload a File</b>
+                                        <br>
+                                        <div class="upload file-type">
+                                            <i>or drop files here</i>
+                                            <div class="upload file-type">
+                                                .PDF or .TXT
+                                            </div>
+                                            <input type="file" id="fileInput"
+                                                accept=".pdf, .txt, text/plain, application/pdf" style="display: none;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="upload-image-trigger">
+                                    <img class="icon-img" id="iconImg" alt="Upload Image"
+                                        src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316242/assets/uw8tiuslpflrgvnbcfrn.svg" />
+                                    <span class="hover-text">Upload Image</span>
+                                </div>
+                                <div class="popup-overlay-dark" id="docuImgPopup" style="display: none">
+                                    <div class="dashboard-component" id="docuImgPopupContents">
+                                        <button id="closeButton" class="close-button-upload">X</button>
+                                        <img class="icon-upload image"
+                                            src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316250/assets/ibekwdxfb4b296knhbpg.svg" />
+                                        <br><b>Upload an Image</b>
+                                        <br>
+                                        <div class="upload file-type">
+                                            <i>or drop images here</i>
+                                            <div class="upload file-type">
+                                                JPG, PNG, TIFF, SVG, etc.
+                                            </div>
+                                            <input type="file" accept=".jpg,.jpeg,.png,.webp,.svg"
+                                                style="display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-input" id="chatInput">
+                                <div class="chat-contents" style="flex: 1;">
+                                    <span class="file-previews" id="filePreviews"></span>
+                                    <span class="image-previews" id="imagePreviews"></span>
+                                    <div class="message-input-container" id="contact-form">
+                                        <textarea class="message-input" rows="1" id="messageInput"
+                                            placeholder="Talk to Artifici..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="mic-container">
+                                    <img class="mic" id="micIcon"
+                                        src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316240/assets/vuzoxkdwiznizpr13ehk.svg" />
+                                    <span class="hover-text">Use Microphone</span>
+                                </div>
+                            </div>
+                            <div class="send-button" id="sendButtonContainer" onclick="sendMessage()">
+                                <img class="icon-paper-plane"
+                                    src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316240/assets/ktacgfl93mkfpozvvq7s.svg" />
+                                <span class="hover-text">Send Message</span>
+                            </div>
+                        </div>
+                        <div class="disclaimer">
+                            Artifici can make mistakes and may display inaccurate or offensive information that doesn't
+                            represent Cognifyx's views. Consider checking important information.
+                        </div>
+                    </div>
+                </div>
+                <div class="reload-page-button" id="reloadPage" onclick="reloadPageFunction()" style="display: none;">
+                    <span>Regenerate</span>
+                    <img class="reload-icon"
+                        src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700506270/assets/auv9ukm7lqtrrwerzhbx.svg">
+                </div>
+            </div>
+            <div class="footer-container" id="footerContainer">
+                <div class="cognifyx-parent" id="subFooterContainer">
+                    <b class="cognifyx">Cognifyx</b>
+                </div>
+                <img class="light-dark-toggle" id="lightDarkToggle" alt=""
+                    src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316242/assets/je0q6yyyxf1gduv47d3r.svg" />
+            </div>
+        </div>
+    </div>
+    <div id="dashboardComponentContainer" class="popup-overlay-dark dashboard" style="display: none">
+        <div class="dashboard-component" id="dashboardComponent">
+            <div class="user-profile-container" id="userProfileContainer">
+                <div class="user-info-content">
+                    <div class="user-group">
+                        <div class="change-profile-container">
+                            <img id="userImage" class="user-image-icon"
+                                src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700843227/assets/agjh6za9dbl6ybfnvjj8.svg">
+                            <div class="camera-overlay" id="cameraOverlay" onclick="openFileInput()">
+                                <img class="camera-icon"
+                                    src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700460816/assets/l2ddtwueyuupnhzp46p6.svg">
+                            </div>
+                        </div>
+                        <input type="file" id="hiddenFileInput" onchange="handleChange(this)" accept="image/*">
+                        <div class="user-info-names" name="userInfo">
+                            <b class="username" id="dashUsername">Username</b>
+                            <div class="full-name" id="dashFullName">Full name</div>
+                            <i class="email-address" id="dashEmail">Email address</i>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-info-content1">
+                    <div class="dashboard-button user-info-button" id="dashboardProfileButton" data-display="profile">
+                        <b class="user-sub-info-button">Profile</b>
+                    </div>
+                    <div class="dashboard-button user-info-button" id="dashboardSettingsButton" data-display="settings">
+                        <b class="user-sub-info-button">Settings</b>
+                    </div>
+                    <div class="dashboard-button user-info-button" id="dashboardUpdatesButton" data-display="updates">
+                        <b class="user-sub-info-button">Updates</b>
+                    </div>
+                    <div class="dashboard-button user-info-button" id="dashboardAboutButton" data-display="about">
+                        <b class="user-sub-info-button">About</b>
+                    </div>
+                    <div class="dashboard-button user-info-button" id="dashboardHelpButton" data-display="help">
+                        <b class="user-sub-info-button">Help</b>
+                    </div>
+                </div>
+                <b class="log-out" id="popuplogOutText">Log out</b>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup-overlay" id="modifyChatComponent" style="display: none">
+        <div class="modify-chat-component">
+            <i>Modify this response</i>
+            <div class="modify-items-content" id="modifyShorter">
+                <div class="modify-chat-icon">
+                    <img class="modify-icon" alt=""
+                        src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316245/assets/ipecv9nrgzdoe5e8vzea.svg" />
+                </div>
+                <b>Shorter</b>
+            </div>
+            <div class="modify-items-content" id="modifyLonger">
+                <div class="modify-chat-icon">
+                    <img class="modify-icon" alt=""
+                        src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316245/assets/ef87qtotzklyz34dldga.svg" />
+                </div>
+                <b>Longer</b>
+            </div>
+            <div class="modify-items-content" id="modifySimpler">
+                <div class="modify-chat-icon">
+                    <img class="modify-icon" alt=""
+                        src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316245/assets/inv0xf49lh2j2m6h9llu.svg" />
+                </div>
+                <b>Simpler</b>
+            </div>
+            <div class="modify-items-content" id="modifyCasual">
+                <div class="modify-chat-icon">
+                    <img class="modify-icon" alt=""
+                        src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316245/assets/ejmettccdrzmgqbfgk20.svg" />
+                </div>
+                <b>More Casual</b>
+            </div>
+            <div class="modify-items-content" id="modifyProfessional">
+                <div class="modify-chat-icon">
+                    <img class="modify-icon" alt=""
+                        src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316245/assets/gxrzgdtvilqc64ec2sf0.svg" />
+                </div>
+                <b>More Professional</b>
+            </div>
+        </div>
+    </div>
+    <div class="popup-overlay" id="shareConversation" style="display: none">
+        <div class="share-conversation-container">
+            <i>Share conversation</i>
+            <div class="share-conversation-content" id="shareCopy">
+                <div class="share-conversation-icon">
+                    <img class="share-icon" alt=""
+                        src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316249/assets/xifob5fleffdxptdrcsl.svg" />
+                </div>
+                <b>Copy Link</b>
+            </div>
+            <div class="share-conversation-content" id="shareReport">
+                <div class="share-conversation-icon">
+                    <img class="share-icon" alt=""
+                        src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316250/assets/qvgkherbljwoev7brzid.svg" />
+                </div>
+                <b>Report</b>
+            </div>
+        </div>
+    </div>
+    <div class="popup-overlay" id="recentChatOption" style="display: none">
+        <div class="recent-chat-options-container">
+            <i>Edit conversation</i>
+            <div class="recent-chat-options-content" id="recentPin">
+                <div class="recent-chat-options-icon">
+                    <img class="recent-chat-icon" alt=""
+                        src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316247/assets/bnwzzw1rpx8frfpvvrjb.svg" />
+                </div>
+                <b>Pin</b>
+            </div>
+            <div class="recent-chat-options-content" id="recentRename">
+                <div class="recent-chat-options-icon">
+                    <img class="recent-chat-icon" alt=""
+                        src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316248/assets/lrb4bkl4qrnvyvkn9doo.svg" />
+                </div>
+                <b>Rename</b>
+            </div>
+            <div class="recent-chat-options-content" id="recentArchive">
+                <div class="recent-chat-options-icon">
+                    <img class="recent-chat-icon" alt=""
+                        src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316246/assets/jrtbijath3bq5dilfiea.svg" />
+                </div>
+                <b>Archive</b>
+            </div>
+            <div class="recent-chat-options-content" id="recentDelete">
+                <div class="recent-chat-options-icon">
+                    <img class="recent-chat-icon" alt=""
+                        src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1700316247/assets/z7ukylykoowyaidb1hin.svg" />
+                </div>
+                <b>Delete</b>
+            </div>
+        </div>
+    </div>
+    <div class="popup-overlay" id="volumeSlider" style="display: none">
+        <div class="volume-slider-popup">
+            <i>Adjust Volume</i>
+            <div>
+                <input type="range" min="0" max="100" value="50" class="slider">
+                <span id="volume-value">50</span>
+                <img class="speak-buttons" id="speakPlay"
+                    src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1701080664/assets/trye4hnn5ah65lj5kehj.svg" />
+                <img class="speak-buttons" id="speakStop"
+                    src="https://res.cloudinary.com/dgrbrxs3g/image/upload/v1701080664/assets/ntk3iebcz2cp1qkp5lz9.svg" />
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/chat_page.js') }}"></script>
+</body>
+
+</html>
